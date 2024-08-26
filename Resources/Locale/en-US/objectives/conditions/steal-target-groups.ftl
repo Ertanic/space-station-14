@@ -1,16 +1,4 @@
-# Traitor single items
-steal-target-groups-hypospray = {$ ent-Hypospray.name }
-steal-target-groups-handheld-crew-monitor = {$ ent-HandheldCrewMonitor.name }
-steal-target-groups-clothing-outer-hardsuit-rd = {$ ent-ClothingOuterHardsuitRd.name }
-steal-target-groups-hand-teleporter = {$ ent-HandTeleporter.name }
-steal-target-groups-clothing-shoes-boots-mag-adv = {$ ent-ClothingShoesBootsMagAdv.name }
-steal-target-groups-box-folder-qm-clipboard = {$ ent-BoxFolderQmClipboard.name }
-steal-target-groups-food-meat-corgi = {$ ent-FoodMeatCorgi.name }
-steal-target-groups-captain-id-card = {$ ent-CaptainIDCard.name }
-steal-target-groups-jetpack-captain-filled = {$ ent-JetpackCaptainFilled.name }
-steal-target-groups-weapon-antique-laser = {$ ent-WeaponAntiqueLaser.name }
-steal-target-groups-nuke-disk = {$ ent-NukeDisk.name }
-steal-target-groups-weapon-energy-shot-gun = {$ ent-WeaponEnergyShotgun.name }
+steal-target-groups-unknown = unknown
 
 # Thief Collection
 steal-target-groups-figurines = figurines (any)
@@ -21,25 +9,6 @@ steal-target-groups-door-remotes = door remotes (any)
 steal-target-groups-encryption-keys = encryption keys (any)
 steal-target-groups-id-cards = ID Cards (any)
 steal-target-groups-lamps = LAMPS
-
-# Thief single item
-steal-target-groups-forensic-scanner = {$ ent-ForensicScanner.name }
-steal-target-groups-flippo-engraved-lighter = {$ ent-FlippoEngravedLighter.name }
-steal-target-groups-ammo-tech-fab-circuitboard = {$ ent-AmmoTechFabCircuitboard.name }
-steal-target-groups-clothing-head-hat-warden = {$ ent-ClothingHeadHatWarden.name }
-steal-target-groups-clothing-outer-hardsuit-void-paramed = {$ ent-ClothingOuterHardsuitVoidParamed.name }
-steal-target-groups-medical-tech-fab-circuitboard = {$ ent-MedicalTechFabCircuitboard.name }
-steal-target-groups-clothing-headset-alt-medical = {$ ent-ClothingHeadsetAltMedical.name }
-steal-target-groups-research-and-development-server-machine-circuitboard = {$ ent-ResearchAndDevelopmentServerMachineCircuitboard.name }
-steal-target-groups-fire-axe = {$ ent-FireAxe.name }
-steal-target-groups-ame-part-flatpack = {$ ent-AmePartFlatpack.name }
-steal-target-groups-salvage-expeditions-computer-circuitboard = {$ ent-SalvageExpeditionsComputerCircuitboard.name }
-steal-target-groups-cargo-shuttle-console-circuitboard = {$ ent-CargoShuttleConsoleCircuitboard.name }
-steal-target-groups-salvage-shuttle-console-circuitboard = {$ ent-SalvageShuttleConsoleCircuitboard.name }
-steal-target-groups-clothing-eyes-hud-beer = {$ ent-ClothingEyesHudBeer.name }
-steal-target-groups-bible = {$ ent-Bible.name }
-steal-target-groups-clothing-neck-goldmedal = {$ ent-ClothingNeckGoldmedal.name }
-steal-target-groups-clothing-neck-clownmedal = {$ ent-ClothingNeckClownmedal.name }
 
 # Thief structures
 steal-target-groups-teg = teg generator part

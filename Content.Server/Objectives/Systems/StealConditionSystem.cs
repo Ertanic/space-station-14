@@ -1,16 +1,16 @@
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Components.Targets;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
+using Content.Shared.Stacks;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Stacks;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -72,7 +72,14 @@ public sealed class StealConditionSystem : EntitySystem
     private void OnAfterAssign(Entity<StealConditionComponent> condition, ref ObjectiveAfterAssignEvent args)
     {
         var group = _proto.Index(condition.Comp.StealGroup);
-        string localizedName = Loc.GetString(group.Name);
+        string localizedName = default!;
+
+        if (group is { LocId: null, ProtoId: not null } && _proto.TryIndex<EntityPrototype>(group.ProtoId, out var proto))
+            localizedName = proto.Name;
+        else if (group.LocId is not null)
+            localizedName = Loc.GetString(group.LocId);
+        else
+            localizedName = Loc.GetString("steal-target-groups-unknown");
 
         var title =condition.Comp.OwnerText == null
             ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", localizedName))
