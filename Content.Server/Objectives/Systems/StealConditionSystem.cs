@@ -1,5 +1,5 @@
+using System.Linq;
 using Content.Server.Objectives.Components;
-using Content.Server.Objectives.Components.Targets;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
@@ -72,14 +72,30 @@ public sealed class StealConditionSystem : EntitySystem
     private void OnAfterAssign(Entity<StealConditionComponent> condition, ref ObjectiveAfterAssignEvent args)
     {
         var group = _proto.Index(condition.Comp.StealGroup);
-        string localizedName = default!;
 
-        if (group is { LocId: null, ProtoId: not null } && _proto.TryIndex<EntityPrototype>(group.ProtoId, out var proto))
-            localizedName = proto.Name;
-        else if (group.LocId is not null)
-            localizedName = Loc.GetString(group.LocId);
+        string? localizedName = null;
+
+        // Try to find a dedicated name (especially for groups)
+        if (group.Name.HasValue && Loc.TryGetString(group.Name.Value, out var name))
+        {
+            localizedName = name;
+        }
+        // otherwise look for the name in the prototypes
         else
-            localizedName = Loc.GetString("steal-target-groups-unknown");
+        {
+            // Components are stored without 'Component' ಠ_ಠ
+            const string nameOfComp = "StealTarget";
+
+            var entity = _proto
+                .EnumeratePrototypes<EntityPrototype>()
+                // Get the first entity in the collection if the target component contains the id of the theft group we want. Or null..................0
+                .FirstOrDefault(e => e.Components.ContainsKey(nameOfComp) && (e.Components[nameOfComp].Component as StealTargetComponent)!.StealGroup == group.ID);
+
+            localizedName = entity?.Name;
+        }
+
+        // If still null, we get the default name
+        localizedName ??= Loc.GetString("steal-target-groups-unknown");
 
         var title =condition.Comp.OwnerText == null
             ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", localizedName))

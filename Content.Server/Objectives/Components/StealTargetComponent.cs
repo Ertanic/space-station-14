@@ -1,8 +1,7 @@
-using Content.Server.Objectives.Systems;
+using Content.Shared.Objectives;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Objectives.Components.Targets;
+namespace Content.Server.Objectives.Components;
 
 /// <summary>
 /// Allows an object to become the target of a StealCollection  objection
@@ -14,5 +13,5 @@ public sealed partial class StealTargetComponent : Component
     /// The theft group to which this item belongs.
     /// </summary>
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
-    public string StealGroup;
+    public ProtoId<StealTargetGroupPrototype> StealGroup;
 }
