@@ -83,13 +83,10 @@ public sealed class StealConditionSystem : EntitySystem
         // otherwise look for the name in the prototypes
         else
         {
-            // Components are stored without 'Component' ಠ_ಠ
-            const string nameOfComp = "StealTarget";
-
             var entity = _proto
                 .EnumeratePrototypes<EntityPrototype>()
                 // Get the first entity in the collection if the target component contains the id of the theft group we want. Or null..................0
-                .FirstOrDefault(e => e.Components.ContainsKey(nameOfComp) && (e.Components[nameOfComp].Component as StealTargetComponent)!.StealGroup == group.ID);
+                .FirstOrDefault(e => e.TryGetComponent("StealTarget", out StealTargetComponent? target) && target.StealGroup == group.ID);
 
             localizedName = entity?.Name;
         }
